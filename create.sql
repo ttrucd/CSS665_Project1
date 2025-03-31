@@ -33,22 +33,22 @@ CREATE TABLE Employees (
 
 -- Software Licenses Table
 CREATE TABLE Software_Licenses (
-    License_ID INT IDENTITY(1,1) PRIMARY KEY,
+    License_Id INT IDENTITY(1,1) PRIMARY KEY,
     Software_Name VARCHAR(100) NOT NULL,
     License_Key VARCHAR(100) UNIQUE NOT NULL,
     Expiration_Date DATE NOT NULL,
     Assigned_Employee_ID INT NULL,
-    FOREIGN KEY (Assigned_Employee_ID) REFERENCES Employees(Employee_ID) ON DELETE SET NULL
+    FOREIGN KEY (Assigned_Employee_Id) REFERENCES Employees(Employee_Id) ON DELETE SET NULL
     -- Functional Dependency: License_ID → (Software_Name, License_Key, Expiration_Date, Assigned_Employee_ID)
 );
 
 -- Maintenance Records Table
 CREATE TABLE Maintenance_Records (
-    Record_ID INT IDENTITY(1,1) PRIMARY KEY,
-    Asset_ID INT NOT NULL,
+    Record_Id INT IDENTITY(1,1) PRIMARY KEY,
+    Asset_Id INT NOT NULL,
     Issue_Description TEXT NOT NULL,
     Maintenance_Date DATE NOT NULL,
     Technician_Name VARCHAR(100) NOT NULL,
-    FOREIGN KEY (Asset_ID) REFERENCES Assets(Asset_ID) ON DELETE CASCADE
+    FOREIGN KEY (Asset_Id) REFERENCES Assets(Asset_Id) ON DELETE CASCADE
     -- Functional Dependency: Record_ID → (Asset_ID, Issue_Description, Maintenance_Date, Technician_Name)
 );
