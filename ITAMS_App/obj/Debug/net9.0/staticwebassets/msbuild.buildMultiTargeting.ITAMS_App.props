@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ITAMS_App.props" />
+</Project>

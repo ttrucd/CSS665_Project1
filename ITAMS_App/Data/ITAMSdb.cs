@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore; 
-using ITAMS_App; 
+using ITAMS_App.Models; 
 
-public class ITAMSdb : DbContext
+namespace ITAMS_App.Data {
+
+public class ITAMSDbContext : DbContext
 {
-    public ITAMSdb (DbContextOptions<ITAMSdb> options): base(options) {}
+    public ITAMSDbContext (DbContextOptions<ITAMSDbContext> options): base(options) {}
 
     public DbSet<Asset> Assets {get; set;}
     public DbSet<Administrator> Administrators {get; set;}
@@ -18,4 +20,5 @@ public class ITAMSdb : DbContext
         modelBuilder.Entity<Administrator>().HasIndex(a => a.Email).IsUnique();
         modelBuilder.Entity<SoftwareLicense>().HasIndex(l => l.License_Key).IsUnique();
     }
+}
 }

@@ -1,3 +1,5 @@
+namespace ITAMS_App.Models
+{
 public class MaintenanceRecord
 {
     public int Record_Id { get; set; }
@@ -7,4 +9,5 @@ public class MaintenanceRecord
     public string Technician_Name { get; set; }
 
     public Asset Asset { get; set; }
+}
 }

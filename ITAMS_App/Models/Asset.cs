@@ -1,3 +1,5 @@
+namespace ITAMS_App.Models
+{
 public class Asset
 
 {
@@ -8,4 +10,5 @@ public class Asset
     public string Status {get; set;}
 
     public ICollection<MaintenanceRecord> MaintenanceRecords {get; set;}
+}
 }

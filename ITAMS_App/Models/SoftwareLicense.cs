@@ -1,3 +1,4 @@
+namespace ITAMS_App.Models {
 public class SoftwareLicense
 {
     public int License_Id {get; set;}
@@ -7,4 +8,5 @@ public class SoftwareLicense
 
     public int? Assigned_Employee_Id {get; set;}
     public Employee AssignedEmployee {get; set;}
+}
 }

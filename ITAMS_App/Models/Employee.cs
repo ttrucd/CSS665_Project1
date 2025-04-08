@@ -1,3 +1,6 @@
+namespace ITAMS_App.Models {
+
+
 public class Employee 
 {
     public int Employee_Id {get; set;}
@@ -8,4 +11,5 @@ public class Employee
 
    public int? Assigned_Asset_Id {get; set;}
    public Asset AssignedAsset {get; set;} 
+}
 }
