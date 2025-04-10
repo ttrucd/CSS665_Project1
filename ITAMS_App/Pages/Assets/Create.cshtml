@@ -1,0 +1,49 @@
+@page
+@model ITAMS_App.Pages_Assets.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        }
+        
+        <h1>Create</h1>
+        
+    <h4>Asset</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Asset.Asset_Type" class="control-label"></label>
+                <input asp-for="Asset.Asset_Type" class="form-control" />
+                <span asp-validation-for="Asset.Asset_Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asset.Serial_Number" class="control-label"></label>
+                <input asp-for="Asset.Serial_Number" class="form-control" />
+                <span asp-validation-for="Asset.Serial_Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asset.Purchase_Date" class="control-label"></label>
+                <input asp-for="Asset.Purchase_Date" class="form-control" />
+                <span asp-validation-for="Asset.Purchase_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asset.Status" class="control-label"></label>
+                <input asp-for="Asset.Status" class="form-control" />
+                <span asp-validation-for="Asset.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
