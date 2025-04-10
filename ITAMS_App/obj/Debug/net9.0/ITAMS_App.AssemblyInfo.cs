@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ITAMS_App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f121c141c8302f94e5b776d1d20e2db78d4f0548")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22effe3cf623fa5267e86c479c7c83401ea27145")]
 [assembly: System.Reflection.AssemblyProductAttribute("ITAMS_App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ITAMS_App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

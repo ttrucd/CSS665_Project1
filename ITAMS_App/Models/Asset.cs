@@ -9,8 +9,12 @@ public class Asset
 {
     [Key]
     public int Asset_Id { get; set;}
+    
     public required string Asset_Type {get; set;}
     public required string Serial_Number {get; set;}
+
+    [Required]
+    [DataType(DataType.Date)]
     public DateTime Purchase_Date {get; set;}
     public required string Status {get; set;}
 

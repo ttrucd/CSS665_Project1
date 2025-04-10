@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using ITAMS_App.Data;
 using ITAMS_App.Models;
 
-namespace ITAMS_App.Pages_Assets
+namespace ITAMS_App.Pages.Assets
 {
     public class EditModel : PageModel
     {

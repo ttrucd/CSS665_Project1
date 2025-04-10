@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ITAMS_App.Data;
 using ITAMS_App.Models;
 
-namespace ITAMS_App.Pages_Assets
+namespace ITAMS_App.Pages.Assets
 {
     public class CreateModel : PageModel
     {
@@ -21,23 +21,23 @@ namespace ITAMS_App.Pages_Assets
 
         public IActionResult OnGet()
         {
-            return Page();
+            return Page(); //Display the form 
         }
 
         [BindProperty]
-        public Asset Asset { get; set; } = default!;
+        public Asset Asset { get; set; } = default!; // Asset to be created
 
-        // For more information, see https://aka.ms/RazorPagesCRUD.
+        
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return Page(); // If the form is invalid, redisplay the page with validation errors
             }
-
+            //Add the new asset to the context and save changes
             _context.Assets.Add(Asset);
             await _context.SaveChangesAsync();
-
+            //Redirect to the Index page (list of assets) after successful creation
             return RedirectToPage("./Index");
         }
     }
