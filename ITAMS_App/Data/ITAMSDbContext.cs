@@ -5,7 +5,7 @@ namespace ITAMS_App.Data {
 
 public class ITAMSDbContext : DbContext
 {
-    public ITAMSDbContext (DbContextOptions<ITAMSDbContext> options): base(options) {}
+    public ITAMSDbContext(DbContextOptions<ITAMSDbContext> options): base(options) {}
 
     public DbSet<Asset> Assets {get; set;}
     public DbSet<Administrator> Administrators {get; set;}
@@ -15,7 +15,10 @@ public class ITAMSDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-         modelBuilder.Entity<Asset>().HasIndex(a => a.Serial_Number).IsUnique();
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Asset>().HasIndex(a => a.Asset_Id);
+        modelBuilder.Entity<Asset>().HasIndex(a => a.Serial_Number).IsUnique();
+        
         modelBuilder.Entity<Employee>().HasIndex(e => e.Email).IsUnique();
         modelBuilder.Entity<Administrator>().HasIndex(a => a.Email).IsUnique();
         modelBuilder.Entity<SoftwareLicense>().HasIndex(l => l.License_Key).IsUnique();
