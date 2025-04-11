@@ -3,6 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ITAMS_App.Models
 {
+    public enum Role {
+        Admin, 
+        Staff, 
+        Student
+    }
     public class Employee
     {
         [Key]
@@ -20,5 +25,8 @@ namespace ITAMS_App.Models
 
         [ForeignKey("Assigned_Asset_Id")]
         public Asset? AssignedAsset { get; set; } // optional navigation property
+    
+
+        public required string Role {get; set;}
     }
 }
