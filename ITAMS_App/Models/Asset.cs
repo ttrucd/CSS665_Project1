@@ -11,6 +11,9 @@ public class Asset
 {
     [Key]
     public int Asset_Id { get; set;}
+
+    public required string Asset_Name { get; set; } = string.Empty;
+
     
     
     [Display(Name = "Asset Type")]

@@ -1,0 +1,33 @@
+@page
+@model ITAMS_App.Pages.MaintenanceRecords.IndexModel
+@{
+    ViewData["Title"] = "Maintenance Records";
+}
+
+<h1>Maintenance Records</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Add New Record</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Asset</th>
+            <th>Issue</th>
+            <th>Technician</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model.MaintenanceRecords)
+        {
+            <tr>
+                <td>@record.Asset.Asset_Name</td>
+                <td>@record.Issue_Description</td>
+                <td>@record.Technician_Name</td>
+                <td>@record.Maintenance_Date.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

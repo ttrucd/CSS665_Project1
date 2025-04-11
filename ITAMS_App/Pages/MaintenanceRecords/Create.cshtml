@@ -1,0 +1,37 @@
+@page
+@model ITAMS_App.Pages.MaintenanceRecords.CreateModel
+@{
+    ViewData["Title"] = "Create Maintenance Record";
+}
+
+<h2>Create Maintenance Record</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Asset_Id">Asset</label>
+        <select asp-for="MaintenanceRecord.Asset_Id" class="form-control" asp-items="Model.AssetList"></select>
+        <span asp-validation-for="MaintenanceRecord.Asset_Id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Issue_Description">Issue Description</label>
+        <textarea asp-for="MaintenanceRecord.Issue_Description" class="form-control"></textarea>
+        <span asp-validation-for="MaintenanceRecord.Issue_Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Maintenance_Date">Maintenance Date</label>
+        <input asp-for="MaintenanceRecord.Maintenance_Date" class="form-control" type="date"/>
+        <span asp-validation-for="MaintenanceRecord.Maintenance_Date" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Technician_Name">Technician Name</label>
+        <input asp-for="MaintenanceRecord.Technician_Name" class="form-control"/>
+        <span asp-validation-for="MaintenanceRecord.Technician_Name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<a asp-page="./Index">Back to Maintenance Records List</a>
