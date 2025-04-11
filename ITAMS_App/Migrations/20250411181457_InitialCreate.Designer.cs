@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ITAMS_App.Migrations
 {
     [DbContext(typeof(ITAMSDbContext))]
-    [Migration("20250411144713_FixAssetTypeColumnReference")]
-    partial class FixAssetTypeColumnReference
+    [Migration("20250411181457_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,7 +66,8 @@ namespace ITAMS_App.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Asset_Id"));
 
                     b.Property<int>("AssetType_Id")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("AssetType_Id");
 
                     b.Property<DateTime>("Purchase_Date")
                         .HasColumnType("datetime2");

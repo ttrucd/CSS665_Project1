@@ -28,12 +28,25 @@ namespace ITAMS_App.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AssetTypes",
+                columns: table => new
+                {
+                    AssetType_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type_Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AssetTypes", x => x.AssetType_Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Assets",
                 columns: table => new
                 {
                     Asset_Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Asset_Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AssetType_Id = table.Column<int>(type: "int", nullable: false),
                     Serial_Number = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Purchase_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -41,6 +54,12 @@ namespace ITAMS_App.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Assets", x => x.Asset_Id);
+                    table.ForeignKey(
+                        name: "FK_Assets_AssetTypes_AssetType_Id",
+                        column: x => x.AssetType_Id,
+                        principalTable: "AssetTypes",
+                        principalColumn: "AssetType_Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -120,6 +139,11 @@ namespace ITAMS_App.Migrations
                 column: "Asset_Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Assets_AssetType_Id",
+                table: "Assets",
+                column: "AssetType_Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Assets_Serial_Number",
                 table: "Assets",
                 column: "Serial_Number",
@@ -170,6 +194,9 @@ namespace ITAMS_App.Migrations
 
             migrationBuilder.DropTable(
                 name: "Assets");
+
+            migrationBuilder.DropTable(
+                name: "AssetTypes");
         }
     }
 }
