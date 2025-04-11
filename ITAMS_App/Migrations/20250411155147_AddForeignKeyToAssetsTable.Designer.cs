@@ -4,6 +4,7 @@ using ITAMS_App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ITAMS_App.Migrations
 {
     [DbContext(typeof(ITAMSDbContext))]
-    partial class ITAMSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250411155147_AddForeignKeyToAssetsTable")]
+    partial class AddForeignKeyToAssetsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +67,7 @@ namespace ITAMS_App.Migrations
 
                     b.Property<int>("AssetType_Id")
                         .HasColumnType("int")
-                        .HasColumnName("AssetType_Id");
+                        .HasColumnName("Asset_Type");
 
                     b.Property<DateTime>("Purchase_Date")
                         .HasColumnType("datetime2");

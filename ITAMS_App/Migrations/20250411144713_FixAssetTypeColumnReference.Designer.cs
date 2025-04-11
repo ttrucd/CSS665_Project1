@@ -4,6 +4,7 @@ using ITAMS_App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ITAMS_App.Migrations
 {
     [DbContext(typeof(ITAMSDbContext))]
-    partial class ITAMSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250411144713_FixAssetTypeColumnReference")]
+    partial class FixAssetTypeColumnReference
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,8 +66,7 @@ namespace ITAMS_App.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Asset_Id"));
 
                     b.Property<int>("AssetType_Id")
-                        .HasColumnType("int")
-                        .HasColumnName("AssetType_Id");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Purchase_Date")
                         .HasColumnType("datetime2");

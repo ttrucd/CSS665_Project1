@@ -8,6 +8,7 @@ public class ITAMSDbContext : DbContext
     public ITAMSDbContext(DbContextOptions<ITAMSDbContext> options): base(options) {}
 
     public DbSet<Asset> Assets {get; set;}
+    public DbSet<AssetType> AssetTypes { get; set; }
     public DbSet<Administrator> Administrators {get; set;}
     public DbSet<Employee> Employees {get; set;}
     public DbSet<SoftwareLicense> SoftwareLicense {get; set;}

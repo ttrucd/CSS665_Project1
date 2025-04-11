@@ -15,9 +15,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group">
-                <label asp-for="Asset.Asset_Type" class="control-label"></label>
-                <input asp-for="Asset.Asset_Type" class="form-control" />
-                <span asp-validation-for="Asset.Asset_Type" class="text-danger"></span>
+                <label asp-for="Asset.AssetType_Id" class="control-label"></label>
+                <select asp-for="Asset.AssetType_Id" class="form-control"
+                        asp-items="Model.AssetTypeOptions"></select>
+                <span asp-validation-for="Asset.AssetType_Id" class="text-danger"></span>
+
             </div>
 
             <div class="form-group">

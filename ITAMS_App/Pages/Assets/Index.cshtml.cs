@@ -23,7 +23,16 @@ namespace ITAMS_App.Pages.Assets
 
         public async Task OnGetAsync()
         {
-            Asset = await _context.Assets.ToListAsync();
+            //Fetch Assets with AssetType included
+            Asset = await _context.Assets
+                .Include(a => a.AssetType)
+                .ToListAsync();
+
+        //Add debugging output to check the data
+        foreach (var asset in Asset)
+        {
+        Console.WriteLine($"Asset ID: {asset.Asset_Id}, Asset Type: {asset.AssetType?.Type_Name}");
+        }
         }
     }
 }
