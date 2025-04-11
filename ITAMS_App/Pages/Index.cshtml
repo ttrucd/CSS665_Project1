@@ -1,42 +1,11 @@
 ﻿@page
-@model ITAMS_App.Pages.Assets.IndexModel
+@model IndexModel
 
 @{
-    ViewData["Title"] = "Assets List";
+    ViewData["Title"] = "Home";
 }
 
-<h2>Assets List</h2>
+<h2>IT Asset Management System</h2>
 
-<p>
-    <a asp-page="/Assets/Create" class="btn btn-primary">Create New Asset</a>
-</p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Asset Type</th>
-            <th>Serial Number</th>
-            <th>Purchase Date</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Asset)
-        {
-            <tr>
-                <td>@item.Asset_Id</td>
-                <td>@item.Asset_Type</td>
-                <td>@item.Serial_Number</td>
-                <td>@item.Purchase_Date.ToShortDateString()</td>
-                <td>@item.Status</td>
-                <td>
-                    <a asp-page="/Assets/Edit" asp-route-id="@item.Asset_Id" class="btn btn-warning">Edit</a> |
-                    <a asp-page="/Assets/Delete" asp-route-id="@item.Asset_Id" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
