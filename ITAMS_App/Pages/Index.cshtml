@@ -32,8 +32,8 @@
                 <td>@item.Purchase_Date.ToShortDateString()</td>
                 <td>@item.Status</td>
                 <td>
-                    <a asp-page="Edit" asp-route-id="@item.Asset_Id" class="btn btn-warning">Edit</a> |
-                    <a asp-page="Delete" asp-route-id="@item.Asset_Id" class="btn btn-danger">Delete</a>
+                    <a asp-page="/Assets/Edit" asp-route-id="@item.Asset_Id" class="btn btn-warning">Edit</a> |
+                    <a asp-page="/Assets/Delete" asp-route-id="@item.Asset_Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
