@@ -15,9 +15,6 @@ namespace ITAMS_App.Models
 
         public DateTime Expiration_Date { get; set; }
 
-        public int? Assigned_Employee_Id { get; set; }
 
-        [ForeignKey("Assigned_Employee_Id")]
-        public Employee? AssignedEmployee { get; set; } // optional navigation property
     }
 }

@@ -1,0 +1,50 @@
+@page
+@model ITAMS_App.Pages_SoftwareLicenses.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Software Licenses</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SoftwareLicense[0].Software_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoftwareLicense[0].License_Key)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoftwareLicense[0].Expiration_Date)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.SoftwareLicense) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Software_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.License_Key)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Expiration_Date)
+            </td>
+           
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.License_Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.License_Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.License_Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,38 @@
+@page
+@model ITAMS_App.Pages_SoftwareLicenses.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>SoftwareLicense</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SoftwareLicense.Software_Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SoftwareLicense.Software_Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SoftwareLicense.License_Key)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SoftwareLicense.License_Key)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SoftwareLicense.Expiration_Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SoftwareLicense.Expiration_Date)
+        </dd>
+        
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.SoftwareLicense.License_Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

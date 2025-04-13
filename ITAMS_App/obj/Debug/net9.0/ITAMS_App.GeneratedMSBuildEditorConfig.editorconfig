@@ -96,6 +96,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/dttru/OneDrive/CS665/Project1/CSS665_Project1/ITAMS_App/Pages/SoftwareLicenses/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU29mdHdhcmVMaWNlbnNlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dttru/OneDrive/CS665/Project1/CSS665_Project1/ITAMS_App/Pages/SoftwareLicenses/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU29mdHdhcmVMaWNlbnNlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dttru/OneDrive/CS665/Project1/CSS665_Project1/ITAMS_App/Pages/SoftwareLicenses/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU29mdHdhcmVMaWNlbnNlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dttru/OneDrive/CS665/Project1/CSS665_Project1/ITAMS_App/Pages/SoftwareLicenses/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU29mdHdhcmVMaWNlbnNlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dttru/OneDrive/CS665/Project1/CSS665_Project1/ITAMS_App/Pages/SoftwareLicenses/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU29mdHdhcmVMaWNlbnNlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/dttru/OneDrive/CS665/Project1/CSS665_Project1/ITAMS_App/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
