@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ITAMS_App.Data;
 using ITAMS_App.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace ITAMS_App.Pages.Assets
 {
@@ -36,8 +38,8 @@ namespace ITAMS_App.Pages.Assets
                 return NotFound();
             }
 
-            // Set the Asset to the fetched asset
-            Asset = asset;
+            // Dropdown for AssetType
+    ViewData["AssetTypeList"] = new SelectList(new List<string> { "Laptop", "Desktop", "Printer" });
 
             return Page();
         }
@@ -46,8 +48,8 @@ namespace ITAMS_App.Pages.Assets
 {
     if (!ModelState.IsValid)
     {
-        // Debugging to check if ModelState is valid or not
-        Console.WriteLine("Model state is invalid");
+        // Repopulate dropdown in case of error
+        ViewData["AssetTypeList"] = new SelectList(new List<string> { "Laptop", "Desktop", "Printer" });
         return Page();
     }
 
