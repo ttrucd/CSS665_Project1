@@ -13,11 +13,13 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             
             <div class="form-group">
                 <label asp-for="Asset.AssetType_Id" class="control-label"></label>
-                <select asp-for="Asset.AssetType_Id" class="form-control"
-                        asp-items="Model.AssetTypeOptions"></select>
+                <select asp-for="Asset.AssetType_Id" class="form-control" asp-items="Model.AssetTypeOptions">
+                        <option value="">--Select Type--</option>
+                </select>
                 <span asp-validation-for="Asset.AssetType_Id" class="text-danger"></span>
 
             </div>
@@ -40,7 +42,7 @@
                 <span asp-validation-for="Asset.Status" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -52,5 +54,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <partial name="_ValidationScriptsPartial" />
 }

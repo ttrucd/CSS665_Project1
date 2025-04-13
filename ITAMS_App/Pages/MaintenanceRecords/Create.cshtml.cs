@@ -30,7 +30,7 @@ namespace ITAMS_App.Pages.MaintenanceRecords
                 .Select(a => new SelectListItem
                 {
                     Value = a.Asset_Id.ToString(),
-                    Text = a.Asset_Name
+                    Text = a.AssetType.Type_Name
                 }).ToListAsync();
         }
 

@@ -32,7 +32,7 @@ namespace ITAMS_App.Pages.Employees // make sure this matches your folder name
                 .Select(a => new SelectListItem
                 {
                     Value = a.Asset_Id.ToString(),
-                    Text = a.Asset_Name
+                    Text = a.AssetType.Type_Name
                 }).ToList();
 
             RoleList = new List<SelectListItem>
@@ -54,7 +54,7 @@ namespace ITAMS_App.Pages.Employees // make sure this matches your folder name
                     .Select(a => new SelectListItem
                     {
                         Value = a.Asset_Id.ToString(),
-                        Text = a.Asset_Name
+                        Text = a.AssetType.Type_Name
                     }).ToList();
 
                 RoleList = new List<SelectListItem>

@@ -11,19 +11,15 @@ public class Asset
 {
     [Key]
     public int Asset_Id { get; set;}
-
-    public required string Asset_Name { get; set; } = string.Empty;
-
-    
-    
+   
+   
     [Display(Name = "Asset Type")]
-    [Column("AssetType_Id")]
     public int AssetType_Id { get; set; } // FK
 
     [ForeignKey("AssetType_Id")]
-    public AssetType AssetType { get; set; } = default!;
+    public AssetType? AssetType { get; set; } = default!;
 
-    public required string Serial_Number {get; set;} = string.Empty;
+    public required string Serial_Number {get; set;}
 
     [Required]
     [DataType(DataType.Date)]

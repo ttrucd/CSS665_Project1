@@ -24,35 +24,50 @@ namespace ITAMS_App.Pages.Assets
         public Asset Asset { get; set; } = default!; // Asset to be created
 
         // Dropdown options for Asset Types
-        public List<SelectListItem> AssetTypeOptions { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> AssetTypeOptions { get; set; } = new();
 
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGet()
         {
             // Fetch all AssetTypes from the database to populate the dropdown
-            AssetTypeOptions = await _context.AssetTypes
+            AssetTypeOptions = _context.AssetTypes
                 .Select(at => new SelectListItem
                 {
                     Value = at.AssetType_Id.ToString(),
                     Text = at.Type_Name
                 })
-                .ToListAsync();
+                .ToList();
+
 
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+       public async Task<IActionResult> OnPostAsync()
+{
+
+    if (!ModelState.IsValid)
+    {
+        foreach (var modelError in ModelState.Values.SelectMany(v => v.Errors))
         {
-            if (!ModelState.IsValid)
-            {
-                return Page(); // If the form is invalid, redisplay the page with validation errors
-            }
-
-            // Add the new asset to the context and save changes
-            _context.Assets.Add(Asset);
-            await _context.SaveChangesAsync();
-
-            // Redirect to the Index page (list of assets) after successful creation
-            return RedirectToPage("./Index");
+            Console.WriteLine($"Validation Error: {modelError.ErrorMessage}");
         }
+        // Rebuild dropdown in case of form errors
+        AssetTypeOptions = _context.AssetTypes
+        .Select(a => new SelectListItem
+        {
+            Value = a.AssetType_Id.ToString(),
+            Text = a.Type_Name
+        }).ToList();
+
+        return Page();
+    }
+
+    _context.Assets.Add(Asset);
+    await _context.SaveChangesAsync();
+
+    return RedirectToPage("./Index");
+}
+
+
+
     }
 }

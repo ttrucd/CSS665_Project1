@@ -23,7 +23,7 @@
         @foreach (var record in Model.MaintenanceRecords)
         {
             <tr>
-                <td>@record.Asset.Asset_Name</td>
+                <td>@record.Asset.AssetType.Type_Name</td>
                 <td>@record.Issue_Description</td>
                 <td>@record.Technician_Name</td>
                 <td>@record.Maintenance_Date.ToShortDateString()</td>

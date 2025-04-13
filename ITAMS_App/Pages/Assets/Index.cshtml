@@ -26,7 +26,7 @@
         @foreach (var item in Model.Asset)
         {
             <tr>
-                <td>@item.AssetType.Type_Name</td>
+                <td>@item.AssetType?.Type_Name</td>
                 <td>@item.Serial_Number</td>
                 <td>@item.Purchase_Date.ToShortDateString()</td>
                 <td>@item.Status</td>
