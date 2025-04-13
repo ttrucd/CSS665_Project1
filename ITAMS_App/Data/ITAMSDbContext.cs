@@ -19,6 +19,10 @@ public class ITAMSDbContext : DbContext
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Asset>().HasIndex(a => a.Asset_Id);
         modelBuilder.Entity<Asset>().HasIndex(a => a.Serial_Number).IsUnique();
+        modelBuilder.Entity<Asset>().Property(a => a.Status).HasConversion(v => v.ToString(), //convert enum to string when saving to DB
+                                                                        v => Enum.GetValues(typeof(AssetStatus))
+                                                                        .Cast<AssetStatus>()
+                                                                        .FirstOrDefault(e => e.ToString().Replace(" ", "") == v.Replace(" ", "")));  // Handle the space issue during conversion
         
         modelBuilder.Entity<Employee>().HasIndex(e => e.Email).IsUnique();
         modelBuilder.Entity<Administrator>().HasIndex(a => a.Email).IsUnique();

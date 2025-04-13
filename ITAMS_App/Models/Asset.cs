@@ -2,10 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 
 namespace ITAMS_App.Models
 {
+public enum AssetStatus
+{
+    [EnumMember(Value = "In Use")]
+        InUse, 
+        Available, 
+        [EnumMember(Value = "Under Maintenance")]
+        UnderMaintenance,
+        Retired
+
+}
 public class Asset
 
 {
@@ -24,7 +35,10 @@ public class Asset
     [Required]
     [DataType(DataType.Date)]
     public DateTime Purchase_Date {get; set;}
-    public required string Status {get; set;}
+
+    [Required]
+    [Display(Name ="Asset Status")]
+    public AssetStatus Status {get; set;}
 
    public ICollection<MaintenanceRecord> MaintenanceRecords { get; set; } = new List<MaintenanceRecord>();
 

@@ -12,62 +12,84 @@ using Microsoft.EntityFrameworkCore;
 namespace ITAMS_App.Pages.Assets
 {
     public class CreateModel : PageModel
-    {
-        private readonly ITAMSDbContext _context;
-
-        public CreateModel(ITAMSDbContext context)
-        {
-            _context = context;
-        }
-
-        [BindProperty]
-        public Asset Asset { get; set; } = default!; // Asset to be created
-
-        // Dropdown options for Asset Types
-        public List<SelectListItem> AssetTypeOptions { get; set; } = new();
-
-        public IActionResult OnGet()
-        {
-            // Fetch all AssetTypes from the database to populate the dropdown
-            AssetTypeOptions = _context.AssetTypes
-                .Select(at => new SelectListItem
-                {
-                    Value = at.AssetType_Id.ToString(),
-                    Text = at.Type_Name
-                })
-                .ToList();
-
-
-            return Page();
-        }
-
-       public async Task<IActionResult> OnPostAsync()
 {
+    private readonly ITAMSDbContext _context;
 
-    if (!ModelState.IsValid)
+    public CreateModel(ITAMSDbContext context)
     {
-        foreach (var modelError in ModelState.Values.SelectMany(v => v.Errors))
-        {
-            Console.WriteLine($"Validation Error: {modelError.ErrorMessage}");
-        }
-        // Rebuild dropdown in case of form errors
+        _context = context;
+    }
+
+    [BindProperty]
+    public Asset Asset { get; set; } = default!; // Asset to be created
+
+    // Dropdown options for Asset Types
+    public List<SelectListItem> AssetTypeOptions { get; set; } = new();
+    public List<SelectListItem> StatusOptions { get; set; } = new();
+
+
+    public IActionResult OnGet()
+    {
+        // Fetch all AssetTypes from the database to populate the dropdown
         AssetTypeOptions = _context.AssetTypes
-        .Select(a => new SelectListItem
-        {
-            Value = a.AssetType_Id.ToString(),
-            Text = a.Type_Name
-        }).ToList();
+            .Select(at => new SelectListItem
+            {
+                Value = at.AssetType_Id.ToString(),
+                Text = at.Type_Name
+            })
+            .ToList();
+
+        // Populate Status dropdown using the AssetStatus enum
+        StatusOptions = Enum.GetValues(typeof(AssetStatus))
+            .Cast<AssetStatus>()
+            .Select(s => new SelectListItem
+            {
+                Value = s.ToString(),
+                Text = s.ToString().Replace("UnderMaintenance", "Under Maintenance")
+                                   .Replace("InUse", "In Use")
+            })
+            .ToList();
 
         return Page();
     }
 
-    _context.Assets.Add(Asset);
-    await _context.SaveChangesAsync();
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
+            // Rebuild dropdown in case of form errors
+            AssetTypeOptions = _context.AssetTypes
+                .Select(a => new SelectListItem
+                {
+                    Value = a.AssetType_Id.ToString(),
+                    Text = a.Type_Name
+                })      
+                .ToList();
 
-    return RedirectToPage("./Index");
-}
+            StatusOptions = Enum.GetValues(typeof(AssetStatus))
+                .Cast<AssetStatus>()
+                .Select(s => new SelectListItem
+                {
+                    Value = s.ToString(),
+                    Text = s.ToString().Replace("UnderMaintenance", "Under Maintenance")
+                                       .Replace("InUse", "In Use")
+                })
+                .ToList();
 
+            return Page();
+        }
 
+          // Ensure the status is correctly mapped to the enum
+        if (Enum.TryParse<AssetStatus>(Asset.Status.ToString().Replace(" ", ""), out var status))
+        {
+        Asset.Status = status;
+        }
 
+        //add the new asset
+        _context.Assets.Add(Asset);
+        await _context.SaveChangesAsync();
+
+        return RedirectToPage("./Index");
     }
+}
 }
