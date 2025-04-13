@@ -9,6 +9,7 @@
 <form method="post">
     <div class="form-group">
         <label for="Asset_Id">Asset</label>
+        <label asp-for="MaintenanceRecord.Asset_Id" class="control-label"></label>
         <select asp-for="MaintenanceRecord.Asset_Id" class="form-control" asp-items="Model.AssetList"></select>
         <span asp-validation-for="MaintenanceRecord.Asset_Id" class="text-danger"></span>
     </div>

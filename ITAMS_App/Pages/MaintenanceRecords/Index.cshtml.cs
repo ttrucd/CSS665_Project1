@@ -19,7 +19,8 @@ namespace ITAMS_App.Pages.MaintenanceRecords
         public async Task OnGetAsync()
         {
             MaintenanceRecords = await _context.MaintenanceRecords
-                .Include(m => m.Asset)
+                .Include(m => m.Asset)                  // include the related Asset
+                    .ThenInclude(a => a.AssetType)      // include the AssetType of the Asset
                 .ToListAsync();
         }
     }

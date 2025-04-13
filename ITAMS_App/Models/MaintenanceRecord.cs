@@ -12,12 +12,12 @@ namespace ITAMS_App.Models
         [ForeignKey("Asset")]
         public int Asset_Id { get; set; }
 
-        public required string Issue_Description { get; set; }
+        public required string Issue_Description { get; set; } = string.Empty;
 
         public DateTime Maintenance_Date { get; set; }
 
-        public required string Technician_Name { get; set; }
+        public required string Technician_Name { get; set; } = string.Empty;
 
-        public required Asset Asset { get; set; }  // Navigation property
+        public Asset? Asset { get; set; }  // Navigation property
     }
 }

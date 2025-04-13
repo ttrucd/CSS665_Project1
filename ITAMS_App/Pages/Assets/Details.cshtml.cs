@@ -27,17 +27,18 @@ namespace ITAMS_App.Pages.Assets
             {
             return NotFound();
             }
-
+        //fetch the asset from db using the id, inclusing the related AssetType
             Asset = await _context.Assets
-                .Include(a => a.AssetType)  
-                .FirstOrDefaultAsync(m => m.Asset_Id == id);
+                .Include(a => a.AssetType)  //include the AssetType so we can access Type_Name
+                .FirstOrDefaultAsync(m => m.Asset_Id == id);    //Find the asset with the given id
 
+        //if no asset was found, return NotFound
             if (Asset == null)
             {
                 return NotFound();
             }
 
-            
+        //return the page with details
             return Page();
         }
 
