@@ -1,11 +1,14 @@
-using ITAMS_App.Data;
-using ITAMS_App.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+using ITAMS_App.Data;
+using ITAMS_App.Models;
 
-namespace ITAMS_App.Pages.Employees
+namespace ITAMS_App.Pages.Employees // make sure this matches your folder name
 {
     public class CreateModel : PageModel
     {
@@ -14,44 +17,53 @@ namespace ITAMS_App.Pages.Employees
         public CreateModel(ITAMSDbContext context)
         {
             _context = context;
-            Employee = new Employee
-            {
-                FirstName = "",
-                LastName = "",
-                Email = "",
-                Department = "",
-                Role = ""
-            };
-            AssetList = new List<SelectListItem>();
-            RoleList = new List<SelectListItem>
-            {
-                new SelectListItem("Admin", "Admin"),
-                new SelectListItem("Staff", "Staff"),
-                new SelectListItem("Student", "Student")
-            };
         }
 
         [BindProperty]
-        public Employee Employee { get; set; }
+        public Employee Employee { get; set; } = default!;
 
-        public List<SelectListItem> AssetList { get; set; }
-        public List<SelectListItem> RoleList { get; set; }
+        public List<SelectListItem> RoleList { get; set; } = new();
 
-        public async Task OnGetAsync()
+        public List<SelectListItem> AssetList { get; set; } = new();
+
+        public IActionResult OnGet()
         {
-            AssetList = await _context.Assets
+            AssetList = _context.Assets
                 .Select(a => new SelectListItem
                 {
                     Value = a.Asset_Id.ToString(),
                     Text = a.Asset_Name
-                }).ToListAsync();
+                }).ToList();
+
+            RoleList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Admin", Text = "Admin" },
+                new SelectListItem { Value = "Staff", Text = "Staff" },
+                new SelectListItem { Value = "Student", Text = "Student" }
+            };
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                await OnGetAsync(); // re-populate lists
+                // Rebuild dropdowns in case of form errors
+                AssetList = _context.Assets
+                    .Select(a => new SelectListItem
+                    {
+                        Value = a.Asset_Id.ToString(),
+                        Text = a.Asset_Name
+                    }).ToList();
+
+                RoleList = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Admin", Text = "Admin" },
+                    new SelectListItem { Value = "Staff", Text = "Staff" },
+                    new SelectListItem { Value = "Student", Text = "Student" }
+                };
+
                 return Page();
             }
 
@@ -62,4 +74,3 @@ namespace ITAMS_App.Pages.Employees
         }
     }
 }
-

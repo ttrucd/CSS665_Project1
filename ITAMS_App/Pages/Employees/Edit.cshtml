@@ -1,17 +1,19 @@
 @page
-@model ITAMS_App.Pages.Employees.CreateModel
+@model ITAMS_App.Pages_Employees.EditModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit Employee";
 }
 
-<h1>Create</h1>
+<h1>Edit Employee</h1>
 
 <h4>Employee</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
+            <input type="hidden" asp-for="Employee.Employee_Id" />
+            
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -40,27 +42,28 @@
 
             <div class="form-group">
                 <label asp-for="Employee.Assigned_Asset_Id" class="control-label"></label>
-                <select asp-for="Employee.Assigned_Asset_Id" class="form-control" asp-items="Model.AssetList">
-                    <option value="">-- Select Asset --</option>
-                </select>
+                <select asp-for="Employee.Assigned_Asset_Id" class="form-control" asp-items="Model.AssetList"></select>
                 <span asp-validation-for="Employee.Assigned_Asset_Id" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Employee.Role" class="control-label"></label>
-                <select asp-for="Employee.Role" class="form-control" asp-items="Model.RoleList">
-                    <option value="">-- Select Role --</option>
-                </select>
+                <select asp-for="Employee.Role" class="form-control" asp-items="Model.RoleList"></select>
                 <span asp-validation-for="Employee.Role" class="text-danger"></span>
             </div>
 
-            <div class="form-group mt-3">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div class="mt-2">
-    <a asp-page="Index">Back to List</a>
+<div>
+    <a asp-page="./Index">Back</a>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

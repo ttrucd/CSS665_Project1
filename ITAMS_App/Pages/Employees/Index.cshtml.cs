@@ -1,25 +1,30 @@
-using ITAMS_App.Data;
-using ITAMS_App.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using ITAMS_App.Data;
+using ITAMS_App.Models;
 
-namespace ITAMS_App.Pages.Employees 
+namespace ITAMS_App.Pages.Employees
 {
     public class IndexModel : PageModel
     {
-        private readonly ITAMSDbContext _context;
+        private readonly ITAMS_App.Data.ITAMSDbContext _context;
 
-        public IndexModel(ITAMSDbContext context)
+        public IndexModel(ITAMS_App.Data.ITAMSDbContext context)
         {
             _context = context;
         }
-        public List<Employee> Employees {get; set;} = new();
 
-        public async Task OnGetAsync() {
+        public IList<Employee> Employees { get;set; } = default!;
+
+        public async Task OnGetAsync()
+        {
             Employees = await _context.Employees
-                .Include(e => e.AssignedAsset)
-                .ToListAsync();
+                .Include(e => e.AssignedAsset).ToListAsync();
         }
-
     }
 }
