@@ -12,11 +12,19 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Asset.AssetType.Type_Name)
+            @Html.DisplayNameFor(model => model.Asset.AssetType_Id)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Asset.AssetType.Type_Name)
+            @if (Model.Asset.AssetType != null)
+        {
+            @Model.Asset.AssetType.Type_Name
+        }
+        else
+        {
+        <span class="text-muted">Asset Type not available</span>
+        }
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Asset.Serial_Number)
         </dt>

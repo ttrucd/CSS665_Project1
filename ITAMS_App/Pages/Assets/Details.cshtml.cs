@@ -19,25 +19,27 @@ namespace ITAMS_App.Pages.Assets
             _context = context;
         }
 
-        public Asset Asset { get; set; } = default!;
+        public Asset? Asset { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
+            return NotFound();
+            }
+
+            Asset = await _context.Assets
+                .Include(a => a.AssetType)  
+                .FirstOrDefaultAsync(m => m.Asset_Id == id);
+
+            if (Asset == null)
+            {
                 return NotFound();
             }
 
-            var asset = await _context.Assets.FirstOrDefaultAsync(m => m.Asset_Id == id);
-
-            if (asset is not null)
-            {
-                Asset = asset;
-
-                return Page();
-            }
-
-            return NotFound();
+            
+            return Page();
         }
+
     }
 }

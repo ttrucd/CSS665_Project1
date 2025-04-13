@@ -4,10 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ITAMS_App.Data;
 using ITAMS_App.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
 
 namespace ITAMS_App.Pages.Assets
 {
@@ -23,69 +22,90 @@ namespace ITAMS_App.Pages.Assets
         [BindProperty]
         public Asset Asset { get; set; } = default!;
 
-        // GET: /Assets/Edit/{id}
+        public List<SelectListItem> StatusOptions { get; set; } = new();
+
+        private void PopulateStatusOptions()
+        {
+            StatusOptions = Enum.GetValues(typeof(AssetStatus))
+                .Cast<AssetStatus>()
+                .Select(s => new SelectListItem
+                {
+                    Value = s.ToString(),
+                    Text = s.ToString().Replace("UnderMaintenance", "Under Maintenance")
+                                       .Replace("InUse", "In Use")
+                })
+                .ToList();
+        }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            // Fetch the asset from the database based on the id
-            var asset = await _context.Assets.FirstOrDefaultAsync(m => m.Asset_Id == id);
-            if (asset == null)
+            // Fetch the asset from the database
+        Asset = await _context.Assets
+            .Include(a => a.AssetType)  // Ensure AssetType is included
+            .FirstOrDefaultAsync(m => m.Asset_Id == id);
+
+            // Check if the asset is null
+            if (Asset == null)
+            {
+            return NotFound();
+            }
+
+            ViewData["AssetTypeList"] = new SelectList(
+                _context.AssetTypes.ToList(),
+                "AssetType_Id",
+                "Type_Name",
+                Asset.AssetType_Id
+            );
+
+            PopulateStatusOptions();
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewData["AssetTypeList"] = new SelectList(
+                    _context.AssetTypes.ToList(),
+                    "AssetType_Id",
+                    "Type_Name",
+                    Asset.AssetType_Id
+                );
+
+                PopulateStatusOptions();
+                return Page();
+            }
+
+            if (id != Asset.Asset_Id)
             {
                 return NotFound();
             }
 
-            // Dropdown for AssetType
-    ViewData["AssetTypeList"] = new SelectList(new List<string> { "Laptop", "Desktop", "Printer" });
+            _context.Attach(Asset).State = EntityState.Modified;
 
-            return Page();
-        }
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Assets.Any(e => e.Asset_Id == Asset.Asset_Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-      public async Task<IActionResult> OnPostAsync(int id)
-{
-    if (!ModelState.IsValid)
-    {
-        // Repopulate dropdown in case of error
-        ViewData["AssetTypeList"] = new SelectList(new List<string> { "Laptop", "Desktop", "Printer" });
-        return Page();
-    }
-
-    if (id != Asset.Asset_Id)
-    {
-        return NotFound();
-    }
-
-    _context.Attach(Asset).State = EntityState.Modified;
-
-    try
-    {
-        await _context.SaveChangesAsync();
-        Console.WriteLine("Asset updated successfully!");
-    }
-    catch (DbUpdateConcurrencyException)
-    {
-        if (!AssetExists(Asset.Asset_Id))
-        {
-            return NotFound();
-        }
-        else
-        {
-            // Handle concurrency issues
-            throw;
-        }
-    }
-
-    return RedirectToPage("./Index");
-}
-
-
-        private bool AssetExists(int id)
-        {
-            return _context.Assets.Any(e => e.Asset_Id == id);
+            return RedirectToPage("./Index");
         }
     }
 }
-
