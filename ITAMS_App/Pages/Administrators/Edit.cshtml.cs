@@ -23,6 +23,8 @@ namespace ITAMS_App.Pages_Administrators
         [BindProperty]
         public Administrator Administrator { get; set; } = default!;
 
+        public List<SelectListItem> PermissionOptions { get; set; } = new();
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -40,11 +42,19 @@ namespace ITAMS_App.Pages_Administrators
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
+        
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                PermissionOptions = Enum.GetValues(typeof(AdminPermission))
+                .Cast<AdminPermission>()
+                .Select(p => new SelectListItem
+                {
+                Value = p.ToString(),
+                Text = p.ToString()
+                }).ToList();
+                
                 return Page();
             }
 

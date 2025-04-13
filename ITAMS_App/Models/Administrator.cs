@@ -2,6 +2,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ITAMS_App.Models
 {
+    public enum AdminPermission
+    {
+    FullAccess,
+    IT,
+    HR, 
+    License
+    }
 public class Administrator 
 {
     [Key]
@@ -9,6 +16,6 @@ public class Administrator
     public required string Name {get; set;}
     public required string Email {get; set;}
     public required string Department {get; set;}
-    public required string Permission {get; set;}
+    public AdminPermission Permission {get; set;}
 }
 }

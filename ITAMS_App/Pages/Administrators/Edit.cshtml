@@ -35,7 +35,7 @@
             <div class="form-group">
                 
                 <label asp-for="Administrator.Permission" class="control-label"></label>
-                <input asp-for="Administrator.Permission" class="form-control" />
+                <select asp-for="Administrator.Permission" class="form-control" asp-items="Model.PermissionOptions"></select>
                 <span asp-validation-for="Administrator.Permission" class="text-danger"></span>
             </div>
             <div class="form-group">

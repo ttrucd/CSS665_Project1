@@ -18,20 +18,36 @@ namespace ITAMS_App.Pages_Administrators
         {
             _context = context;
         }
+        public List<SelectListItem> PermissionOptions { get; set; } = new();
 
         public IActionResult OnGet()
         {
+            PermissionOptions = Enum.GetValues(typeof(AdminPermission))
+                .Cast<AdminPermission>()
+                .Select(p => new SelectListItem
+                {
+                Value = p.ToString(),
+                Text = p.ToString()
+                }).ToList();
+
             return Page();
         }
 
         [BindProperty]
         public Administrator Administrator { get; set; } = default!;
 
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                PermissionOptions = Enum.GetValues(typeof(AdminPermission))
+                .Cast<AdminPermission>()
+                .Select(p => new SelectListItem
+                {
+                Value = p.ToString(),
+                Text = p.ToString()
+                }).ToList();
+                
                 return Page();
             }
 
