@@ -1,51 +1,33 @@
 @page
 @model ITAMS_App.Pages.Assets.DetailsModel
-
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Asset Details</h1>
 
-<div>
-    <h4>Asset</h4>
-    <hr />
+@if (Model.Asset == null)
+{
+    <div class="alert alert-danger">Asset not found.</div>
+}
+else
+{
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Asset.AssetType_Id)
-        </dt>
+        <dt class="col-sm-2">Asset Type</dt>
         <dd class="col-sm-10">
-            @if (Model.Asset.AssetType != null)
-        {
-            @Model.Asset.AssetType.Type_Name
-        }
-        else
-        {
-        <span class="text-muted">Asset Type not available</span>
-        }
+            @Model.Asset.AssetType?.Type_Name ?? "Unknown Type"
         </dd>
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Asset.Serial_Number)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Asset.Serial_Number)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Asset.Purchase_Date)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Asset.Purchase_Date)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Asset.Status)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Asset.Status)
-        </dd>
+        <dt class="col-sm-2">Serial Number</dt>
+        <dd class="col-sm-10">@Model.Asset.Serial_Number</dd>
+
+        <dt class="col-sm-2">Purchase Date</dt>
+        <dd class="col-sm-10">@Model.Asset.Purchase_Date.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Status</dt>
+        <dd class="col-sm-10">@Model.Asset.Status</dd>
     </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Asset.Asset_Id">Edit</a> |
+    
+    <a asp-page="./Edit" asp-route-id="@Model.Asset.Asset_Id">Edit</a>
     <a asp-page="./Index">Back to List</a>
-</div>
+}

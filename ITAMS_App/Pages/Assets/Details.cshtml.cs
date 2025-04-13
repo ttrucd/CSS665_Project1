@@ -23,7 +23,7 @@ namespace ITAMS_App.Pages.Assets
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Assets == null)
             {
             return NotFound();
             }
