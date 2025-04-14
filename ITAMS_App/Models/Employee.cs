@@ -24,7 +24,7 @@ namespace ITAMS_App.Models
         public int? Assigned_Asset_Id { get; set; }
 
         [ForeignKey("Assigned_Asset_Id")]
-        public Asset? AssignedAsset { get; set; } // optional navigation property
+        public Asset? AssignedAsset { get; set; } // navigation property
     
 
         public required string Role {get; set;}

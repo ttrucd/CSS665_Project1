@@ -19,7 +19,37 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #fdf6f0; /* Light cream pastel */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
+
+h1, h2, h3, h4 {
+  color: black;
+}
+
+
+.btn-primary {
+  background-color: #ffb3c6; /* Light pastel pink */
+  border-color: #ffb3c6;
+  color: black;
+}
+
+.btn-primary:hover {
+  background-color: #ffa3b6;
+}
+
+.form-control {
+  background-color: #fffafc;
+  border: 1px solid #ddd;
+}
+
+.table {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
@@ -29,3 +59,15 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.pastel-card {
+  background-color: #fff7fb;
+    border: 1px solid #e7d1ea;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s;
+}
+.pastel-card:hover {
+  transform: scale(1.02);
+}
+

@@ -10,7 +10,8 @@ namespace ITAMS_App.Models
     License
     }
 public class Administrator 
-{
+{   
+    //Primary Key for Administrator table
     [Key]
     public int Admin_Id {get; set;}
     public required string Name {get; set;}

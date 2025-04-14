@@ -15,6 +15,6 @@ namespace ITAMS_App.Models
 
         public DateTime Expiration_Date { get; set; }
 
-
+        //No FK
     }
 }

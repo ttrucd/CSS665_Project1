@@ -18,9 +18,10 @@ namespace ITAMS_App.Pages_Administrators
         {
             _context = context;
         }
-
+        //Property to hold the Administrator data for this page
         public Administrator Administrator { get; set; } = default!;
 
+        //GET method to fetch the Administrator details by id
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)

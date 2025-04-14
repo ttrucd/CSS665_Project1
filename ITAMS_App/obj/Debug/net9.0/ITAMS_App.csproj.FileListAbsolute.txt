@@ -259,7 +259,6 @@ C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\bin\Debug\net9.
 C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\scopedcss\bundle\ITAMS_App.styles.css
 C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\scopedcss\projectbundle\ITAMS_App.bundle.scp.css
-C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\compressed\ya6gioiv1j-b9sayid5wm.gz
 C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\compressed\frajmlnws4-61n19gt1b8.gz
 C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\compressed\9ffz40bhgy-xtxxf3hu2r.gz
 C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\compressed\9lld6gpgff-bqjiyaj88i.gz
@@ -338,3 +337,4 @@ C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.
 C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\ITAMS_App.pdb
 C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\ITAMS_App.genruntimeconfig.cache
 C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\ref\ITAMS_App.dll
+C:\Users\dttru\OneDrive\CS665\Project1\CSS665_Project1\ITAMS_App\obj\Debug\net9.0\compressed\ya6gioiv1j-tsueaz2liu.gz
