@@ -85,11 +85,23 @@ namespace ITAMS_App.Pages.Assets
         Asset.Status = status;
         }
 
-        //add the new asset
+        try
+    {
         _context.Assets.Add(Asset);
         await _context.SaveChangesAsync();
-
         return RedirectToPage("./Index");
     }
+    catch (DbUpdateException ex)
+    {
+        if (ex.InnerException?.Message.Contains("IX_Assets_Serial_Number") == true)
+        {
+            TempData["DuplicateSerialError"] = "😿 Oops! This serial number already exists. Please check and try again.";
+            return RedirectToPage(); // Stay on current page and show message
+        }
+
+        throw; // If it's a different error, rethrow
+    }
+
+}
 }
 }

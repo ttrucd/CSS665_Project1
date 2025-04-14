@@ -44,3 +44,34 @@
         <a asp-page="./Index">Back to List</a>
     </form>
 </div>
+
+<!-- Error Modal -->
+<div class="modal fade" id="deleteErrorModal" tabindex="-1" aria-labelledby="errorLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-danger">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="errorLabel">Cannot Delete Asset</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        🐱 This asset is currently assigned to an employee and cannot be deleted.
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Okay</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+    <script>
+        window.onload = function () {
+            var hasError = '@TempData["DeleteError"]' !== '';
+            if (hasError) {
+                var deleteModal = new bootstrap.Modal(document.getElementById('deleteErrorModal'));
+                deleteModal.show();
+            }
+        };
+    </script>
+}

@@ -50,11 +50,19 @@ namespace ITAMS_App.Pages.Assets
 
             var asset = await _context.Assets.FindAsync(id);
             if (asset != null)
-            {
-                Asset = asset;
-                _context.Assets.Remove(Asset);
-                await _context.SaveChangesAsync();
-            }
+    {
+        try
+        {
+            _context.Assets.Remove(asset);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException ex)
+        {
+            // Check if it's a foreign key violation
+            TempData["DeleteError"] = "This asset is currently assigned to an employee and cannot be deleted.";
+            return RedirectToPage("./Delete", new { id = id }); // Reload delete page to show modal
+        }
+    }
 
             return RedirectToPage("./Index");
         }
